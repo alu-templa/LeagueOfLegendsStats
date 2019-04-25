@@ -1,0 +1,23 @@
+create database leage;
+use league;
+create table bar (champion varchar(140) primary key, bar_type varchar(140) not null);
+create table buff (buff varchar(32) primary key, normalized_buff_effect smallint(6) not null, cooldown smallint(6));
+create table champion_abilities (champion varchar(14) not null, ability_name varchar(180) primary key, normalized_effect smallint(6) not null, area_of_effect smallint(6), normalized_crowd_control smallint(6), cast_cost smallint(6), number_of_casts smallint(6), keyboard_key varchar(1));
+create table champion_passive (name varchar(32) primary key, normalized_effect smallint(6) not null, cooldown smallint(6));
+create table champions (champion varchar(140) primary key, lane text not null, tags text not null);
+create table has_item_recipe(item_name varchar(32), recipe_id smallint(6));
+create table item (name varchar(32) primary key, movement smallint(6), attack_damage smallint(6), ability_power smallint(6), armor smallint(6), magic_resist smallint(6), health smallint(6), mana smallint(6), critical_strike_chance double(5,2), cooldown_reduction double(5,2), attack_speed double(5,4), attack_penetration smallint(6), ability_penetration smallint(6),  life_steal double(5,2), mana_regen smallint(6), health_regen smallint(6), gold_regen smallint(6), cost smallint(6));
+create table item_recipe(id smallint(6), upgrade_cost smallint(6), items varchar(120));   
+create table item_active(name varchar(32) primary key, normalized_effect smallint(6), cooldown smallint(6)); 
+create table item_passive (name varchar(32) primary key, normalized_effect smallint(6), cooldown smallint(6), is_unique boolean);
+create table item_has_active(item_name varchar(32), active_name varchar(32), primary key (item_name));
+create table item_has_passive(item_name varchar(32), active_name varchar(32), primary key (item_name));
+create table summoner_spell (name varchar(32), normalized_effect smallint(6), basetime smallint(6));
+create table masteries (name varchar(32) primary key, normalized_value smallint(6));
+create table stats (name varchar(32) primary key, movement smallint(6), attack_damage smallint(6), ability_power smallint(6), armor smallint(6), magic_resist smallint(6), health smallint(6), mana smallint(6), critical_strike_chance double(5,2), cooldown_reduction double(5,2), attack_speed double(5,4), attack_penetration smallint(6), ability_penetration smallint(6));
+insert into table (columns, columns, ...) values (value1, value2, ...);
+REVOKE ALL PRIVILEGES ON *.* FROM 'public'@'localhost';
+
+**Other SQL statements can be viewed within the PhP index file.
+**Data is manually entered but can be automated through a public API via a specific user.
+**Data was entered with the SSH connected public user in order to ensure consistency of usage of public with the table.

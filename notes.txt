@@ -1,0 +1,15 @@
+**We dropped some parts from the original schema. We decided to simplify the table to something a bit more managable.
+**We instead are using a system of total normalized values to display the effectiveness of a build or choices made by the user in order to fit a semester long scoped project.
+**Most fields are left as either not null or no constraints since various champions could violate many of those constraints.
+**For security, a public user was created to create and edit these tables. This is the same user used within the PhP script. This user can only be locally accessed and root can only be accessed through the ssh root.
+**Public user can only select from tables and may not modify anymore by default.
+**Since PhP is executed server side, any queries, logic, and data isn't shown to the user through inspect, only results.
+**Tables are updated based on changes through root user via SSH. We do not allow users to do this.
+**We tried to avoid joins and any other heavy sql statements since the data could be potentionally very large if completely filled.
+**Summoners is not displayed to the user since this falls out of the scope of directly modifying a champion. Rather it affects champions but not enough to be put on a front end. The database for this still exists.
+
+
+1. The Website can be accessed at the link: http://158.69.197.231/index.php (backend is MySQL accessed by the user public).
+2. The title at the top has a random of 5 queries it rotates between on each page refresh. Random queries we couldn't directly fit into this interface is placed here.
+3. The user can fill out the desired information with the sections prepopulated with the database. Then the user hits submit to see a report generated based on the user's choice.
+4. The report shows various information which can answer most of the user's questions about their build or combination with the champion they select.
